@@ -1,190 +1,203 @@
 // @import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i&subset=cyrillic-ext,latin-ext');
-
 @font-face {
-	font-family: 'FranklinGothic';
+    font-family: 'FranklinGothic';
     src: url('/local/templates/z-template/static/fonts/FranklinGothicMediumITC-Regular.eot');
-    src: url('/local/templates/z-template/static/fonts/FranklinGothicMediumITC-Regular.eot?#iefix') format('embedded-opentype'),
-        url('/local/templates/z-template/static/fonts/FranklinGothicMediumITC-Regular.woff2') format('woff2'),
-        url('/local/templates/z-template/static/fonts/FranklinGothicMediumITC-Regular.woff') format('woff');
-	font-weight: 500;
+    src: url('/local/templates/z-template/static/fonts/FranklinGothicMediumITC-Regular.eot?#iefix') format('embedded-opentype'), url('/local/templates/z-template/static/fonts/FranklinGothicMediumITC-Regular.woff2') format('woff2'), url('/local/templates/z-template/static/fonts/FranklinGothicMediumITC-Regular.woff') format('woff');
+    font-weight: 500;
 }
 
 @font-face {
-	font-family: 'FranklinGothic';
+    font-family: 'FranklinGothic';
     src: url('/local/templates/z-template/static/fonts/FranklinGothicMediumITC-Italic.eot');
-    src: url('/local/templates/z-template/static/fonts/FranklinGothicMediumITC-Italic.eot?#iefix') format('embedded-opentype'),
-        url('/local/templates/z-template/static/fonts/FranklinGothicMediumITC-Italic.woff2') format('woff2'),
-        url('/local/templates/z-template/static/fonts/FranklinGothicMediumITC-Italic.woff') format('woff');
-	font-weight: 500;
-	font-style: italic;
+    src: url('/local/templates/z-template/static/fonts/FranklinGothicMediumITC-Italic.eot?#iefix') format('embedded-opentype'), url('/local/templates/z-template/static/fonts/FranklinGothicMediumITC-Italic.woff2') format('woff2'), url('/local/templates/z-template/static/fonts/FranklinGothicMediumITC-Italic.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
 }
 
 @font-face {
-	font-family: 'FranklinGothic';
-	src: url('/local/templates/z-template/static/fonts/e130d119682ecb567748343bf7f263b0.woff2') format('woff2');
-	font-weight: 400;
+    font-family: 'FranklinGothic';
+    src: url('/local/templates/z-template/static/fonts/e130d119682ecb567748343bf7f263b0.woff2') format('woff2');
+    font-weight: 400;
 }
 
 @font-face {
-	font-family: 'Humanist531CBT';
+    font-family: 'Humanist531CBT';
     src: url('/local/templates/z-template/static/fonts/Humanist531CBT.eot');
-    src: url('/local/templates/z-template/static/fonts/Humanist531CBT.eot?#iefix') format('embedded-opentype'),
-        url('/local/templates/z-template/static/fonts/Humanist531CBT.woff2') format('woff2'),
-        url('/local/templates/z-template/static/fonts/Humanist531CBT.woff') format('woff');
-	font-weight: 400;
+    src: url('/local/templates/z-template/static/fonts/Humanist531CBT.eot?#iefix') format('embedded-opentype'), url('/local/templates/z-template/static/fonts/Humanist531CBT.woff2') format('woff2'), url('/local/templates/z-template/static/fonts/Humanist531CBT.woff') format('woff');
+    font-weight: 400;
 }
 
 @font-face {
-	font-family: 'Humanist531CBT';
+    font-family: 'Humanist531CBT';
     src: url('/local/templates/z-template/static/fonts/Humanist531CBT-Bold.eot');
-    src: url('/local/templates/z-template/static/fonts/Humanist531CBT-Bold.eot?#iefix') format('embedded-opentype'),
-        url('/local/templates/z-template/static/fonts/Humanist531CBT-Bold.woff2') format('woff2'),
-        url('/local/templates/z-template/static/fonts/Humanist531CBT-Bold.woff') format('woff');
-	font-weight: 600;
+    src: url('/local/templates/z-template/static/fonts/Humanist531CBT-Bold.eot?#iefix') format('embedded-opentype'), url('/local/templates/z-template/static/fonts/Humanist531CBT-Bold.woff2') format('woff2'), url('/local/templates/z-template/static/fonts/Humanist531CBT-Bold.woff') format('woff');
+    font-weight: 600;
 }
 
 html {
-	font-size: 16px;
-	text-size-adjust: 100%;
+    font-size: 16px;
+    text-size-adjust: 100%;
 }
 
 %text--body,
 .text--body {
-	font-family: 'Humanist531CBT', Helvetica, sans-serif;
-	font-weight: 400;
-	font-style: normal;
-	@include font-size($base-font-size);
-	line-height: 1.5;
-	color: $base-text-color;
-	-webkit-font-smoothing: antialiased;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    @include font-size($base-font-size);
+    line-height: 1.5;
+    color: $base-text-color;
+    -webkit-font-smoothing: antialiased;
     -moz-font-smoothing: antialiased;
     font-smoothing: antialiased;
 }
 
-p, ul, ol, pre, table, blockquote {
-	margin-top: 0rem;
-	margin-bottom: 1.5rem;
+p,
+ul,
+ol,
+pre,
+table,
+blockquote {
+    margin-top: 0rem;
+    margin-bottom: 1.5rem;
 }
 
-ul ul, ol ol, ul ol, ol ul {
-	margin-top: 0rem;
-	margin-bottom: 0rem;
+ul ul,
+ol ol,
+ul ol,
+ol ul {
+    margin-top: 0rem;
+    margin-bottom: 0rem;
 }
 
 //
 // HEADINGS
 //
-
-h1, h2, h3, h4, h5, h6 {
-	// @include rem(margin-bottom, $base-font-size/2);
-	font-family: 'FranklinGothic', Helvetica, sans-serif;
-	font-weight: 500;
-	line-height: normal;
-	color: inherit;
-	margin-top: 1.5rem;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    // @include rem(margin-bottom, $base-font-size/2);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    line-height: normal;
+    color: inherit;
+    margin-top: 1.5rem;
 }
 
 .header-1 {
-	@include font-size(48px);
-	margin-bottom: 3rem;
+    @include font-size(48px);
+    margin-bottom: 3rem;
 }
+
 h1 {
-	@extend .header-1;
+    @extend .header-1;
+    font-weight: 400;
+    @media screen and(max-width: 768px) {
+        font-size: 1.5rem;
+    }
 }
 
 .header-2 {
-	@include font-size(24px);
-	font-weight: 600;
-	font-family: 'Humanist531CBT', Helvetica, sans-serif;
-	text-transform: uppercase;
-	margin-bottom: 1.5rem;
+    @include font-size(24px);
+    font-weight: 600;
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
 }
+
 h2 {
-	@extend .header-2;
+    @extend .header-2;
 }
 
 .header-3 {
-	@include font-size(24px);
-	line-height: normal;
+    @include font-size(24px);
+    line-height: normal;
 }
+
 h3 {
-	@extend .header-3;
+    @extend .header-3;
 }
 
 .header-4 {
-	@include font-size(18px);
+    @include font-size(18px);
 }
+
 h4 {
-	@extend .header-4;
+    @extend .header-4;
 }
 
 .header-5 {
-	@include font-size(18px);
+    @include font-size(18px);
 }
+
 h5 {
-	@extend .header-5;
+    @extend .header-5;
 }
 
 .header-6 {
-	@include font-size(16px);
-	text-transform: uppercase;
+    @include font-size(16px);
+    text-transform: uppercase;
 }
+
 h6 {
-	@extend .header-6;
+    @extend .header-6;
 }
 
 %caption {
-	@include font-size($kilo-third);
-	font-weight: 600;
-	color: $base-text-color;
-	border-bottom: 2px solid $base-text-color;
-	
-	.caption__units {
-		font-weight: normal;
-	}
+    @include font-size($kilo-third);
+    font-weight: 600;
+    color: $base-text-color;
+    border-bottom: 2px solid $base-text-color;
+    .caption__units {
+        font-weight: normal;
+    }
 }
 
 pre.xdebug-var-dump {
-	font-size: 0.8rem;
+    font-size: 0.8rem;
 }
 
-.page__title > h1 {
-	color: #fff;
-	text-transform: uppercase;
-	margin-bottom: 1.8rem;
-	margin-top: 0;
+.page__title>h1 {
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 1.8rem;
+    margin-top: 0;
 }
 
 .lead {
-	font-size: 1.5rem;
+    font-size: 1.5rem;
 }
 
 @include breakpoint(desktop) {
-	html {
-		font-size: 14px;
-	}
-	
-	%text--body,
-	.text--body {
-		font-size: 1.0715rem;
-	}
+    html {
+        font-size: 14px;
+    }
+    %text--body,
+    .text--body {
+        font-size: 1.0715rem;
+    }
 }
 
 @include breakpoint(mobile) {
-	p, ul, ol, pre, table, blockquote {
-		margin-bottom: 1rem;
-	}
-
-	.lead {
-		font-size: 1.125rem;
-	}
-	
-	.header-1 {
-		@include font-size(34px);
-		line-height: 42px;
-	}
-	
-	.header-3 {
-		@include font-size(18px);
-	}
+    p,
+    ul,
+    ol,
+    pre,
+    table,
+    blockquote {
+        margin-bottom: 1rem;
+    }
+    .lead {
+        font-size: 1.125rem;
+    }
+    .header-1 {
+        @include font-size(34px);
+        line-height: 42px;
+    }
+    .header-3 {
+        @include font-size(18px);
+    }
 }

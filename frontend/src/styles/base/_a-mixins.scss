@@ -1,37 +1,48 @@
 @mixin breakpoint($point) {
-	@if $responsive == true and $point == desktop {
-		@media only screen and (max-width: $breakpoint-desktop) { @content; }
-	}
-	@else if $responsive == true and $point == tablet {
-		@media only screen and (max-width: $breakpoint-tablet) { @content; }
-	}
-	@else if $responsive == true and $point == mobile {
-		@media only screen and (max-width: $breakpoint-mobile) { @content; }
-	}
-	@else if $responsive == true and $point == v-mobile {
-		@media only screen and (max-width: $breakpoint-v-mobile) { @content; }
-	}
+    @if $responsive==true and $point==desktop {
+        @media only screen and (max-width: $breakpoint-desktop) {
+            @content;
+        }
+    }
+    @else if $responsive==true and $point==tablet {
+        @media only screen and (max-width: $breakpoint-tablet) {
+            @content;
+        }
+    }
+    @else if $responsive==true and $point==mobile {
+        @media only screen and (max-width: $breakpoint-mobile) {
+            @content;
+        }
+    }
+    @else if $responsive==true and $point==v-mobile {
+        @media only screen and (max-width: $breakpoint-v-mobile) {
+            @content;
+        }
+    }
 }
 
 @mixin breakpoint-width($max-width) {
-	@media only screen and (max-width: $max-width) { @content; }
+    @media only screen and (max-width: $max-width) {
+        @content;
+    }
 }
 
 @mixin breakpoint-height($max-height) {
-	@media only screen and (max-height: $max-height) { @content; }
+    @media only screen and (max-height: $max-height) {
+        @content;
+    }
 }
 
-
 @mixin hide-me($point) {
-	@include breakpoint($point) {
-		display: none !important;
-	}
+    @include breakpoint($point) {
+        display: none !important;
+    }
 }
 
 @mixin show-me($point, $display: inherit) {
-	@include breakpoint($point) {
-		display: $display !important;
-	}
+    @include breakpoint($point) {
+        display: $display !important;
+    }
 }
 
 // Миксины animation и keyframes
@@ -54,194 +65,196 @@
 // ###Поддержка браузеров:
 //
 // Styleguide 1.2.
-
 @mixin animation($animate...) {
-		$max: length($animate);
-		$animations: '';
-
-		@for $i from 1 through $max {
-				$animations: #{$animations + nth($animate, $i)};
-
-				@if $i < $max {
-						$animations: #{$animations + ", "};
-				}
-		}
-		-webkit-animation: $animations;
-		-moz-animation:    $animations;
-		-o-animation:      $animations;
-		animation:         $animations;
+    $max: length($animate);
+    $animations: '';
+    @for $i from 1 through $max {
+        $animations: #{$animations + nth($animate, $i)};
+        @if $i < $max {
+            $animations: #{$animations + ", "};
+        }
+    }
+    -webkit-animation: $animations;
+    -moz-animation: $animations;
+    -o-animation: $animations;
+    animation: $animations;
 }
 
 @mixin keyframes($animationName) {
-		@-webkit-keyframes #{$animationName} {
-				@content;
-		}
-		@-moz-keyframes #{$animationName} {
-				@content;
-		}
-		@-o-keyframes #{$animationName} {
-				@content;
-		}
-		@keyframes #{$animationName} {
-				@content;
-		}
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+    @keyframes #{$animationName} {
+        @content;
+    }
 }
 
-@function parseInt($n) { /* 2 */
-	@return $n / ($n * 0 + 1);
+@function parseInt($n) {
+    /* 2 */
+    @return $n / ($n * 0 + 1);
 }
 
 @mixin font-size ($size) {
-	@include rem(font-size, $size);
-	// line-height: 1.5 * $size;
-	// padding-bottom: ((1.5 * $size - 1.5 * $size * 0.72)/2);
-	// margin-bottom: -((1.5 * $size - 1.5 * $size * 0.72)/2);
+    @include rem(font-size, $size);
+    // line-height: 1.5 * $size;
+    // padding-bottom: ((1.5 * $size - 1.5 * $size * 0.72)/2);
+    // margin-bottom: -((1.5 * $size - 1.5 * $size * 0.72)/2);
 }
 
 @mixin rem($property, $values) {
-	$px : (); /* 3 */
-	$rem: (); /* 3 */
-
-
-	@each $value in $values { /* 4 */
-
-		@if $value == 0 or $value == auto { /* 5 */
-			$px : append($px , $value);
-			$rem: append($rem, $value);
-		}
-
-		@else {
-			$unit: unit($value);    /* 6 */
-			$val: parseInt($value); /* 6 */
-
-			@if $unit == "px" {  /* 7 */
-				$px : append($px,  $value);
-				$rem: append($rem, ($val / $default-font-size + rem));
-			}
-
-			@if $unit == "rem" { /* 7 */
-				$px : append($px,  ($val * $default-font-size + px));
-				$rem: append($rem, $value);
-			}
-		}
-	}
-
-	@if $px == $rem {     /* 8 */
-		#{$property}: $px;  /* 9 */
-	} @else {
-		// .mdr-no-cssremunit & {
-			#{$property}: $px;  /* 9 */
-		// }
-		// .mdr-cssremunit & {
-			#{$property}: $rem; /* 9 */
-		// }
-	}
+    $px: ();
+    /* 3 */
+    $rem: ();
+    /* 3 */
+    @each $value in $values {
+        /* 4 */
+        @if $value==0 or $value==auto {
+            /* 5 */
+            $px: append($px, $value);
+            $rem: append($rem, $value);
+        }
+        @else {
+            $unit: unit($value);
+            /* 6 */
+            $val: parseInt($value);
+            /* 6 */
+            @if $unit=="px" {
+                /* 7 */
+                $px: append($px, $value);
+                $rem: append($rem, ($val / $default-font-size + rem));
+            }
+            @if $unit=="rem" {
+                /* 7 */
+                $px: append($px, ($val * $default-font-size + px));
+                $rem: append($rem, $value);
+            }
+        }
+    }
+    @if $px==$rem {
+        /* 8 */
+        #{$property}: $px;
+        /* 9 */
+    }
+    @else {
+        // .mdr-no-cssremunit & {
+        #{$property}: $px;
+        /* 9 */
+        // }
+        // .mdr-cssremunit & {
+        #{$property}: $rem;
+        /* 9 */
+        // }
+    }
 }
 
 @mixin corner($position, $color, $size) {
-	@if ($position == top) {
-		&:before {
-			content: "";
-			display: block;
-			width: $size * 2;
-			height: $size * 2;
-			border-style: solid;
-			border-width: $size;
-			border-color: transparent transparent $color transparent;
-			position: absolute;
-			top: -$size * 2;
-			cursor: default;
-		}
-	}
-
-	@if ($position == bottom) {
-		&:after {
-			content: "";
-			display: block;
-			width: $size * 2;
-			height: $size * 2;
-			border-style: solid;
-			border-width: $size;
-			border-color: $color transparent transparent transparent;
-			position: absolute;
-			bottom: -$size * 2;
-			left: $size * 2;
-			cursor: default;
-		}
-	}
-
-	@if ($position == right) {
-		&:after {
-			content: "";
-			display: block;
-			width: $size * 2;
-			height: $size * 2;
-			border-style: solid;
-			border-width: $size;
-			border-color: transparent transparent transparent $color;
-			position: absolute;
-			top: 0;
-			bottom: 0;
-			right: -$size * 2;
-			margin: auto;
-			cursor: default;
-		}
-	}
-	@if ($position == left) {
-		&:before {
-			content: "";
-			display: block;
-			width: $size * 2;
-			height: $size * 2;
-			border-style: solid;
-			border-width: $size;
-			border-color: transparent $color transparent transparent;
-			position: absolute;
-			top: 0;
-			bottom: 0;
-			left: -$size * 2;
-			margin: auto;
-			cursor: default;
-		}
-	}
+    @if ($position==top) {
+        &:before {
+            content: "";
+            display: block;
+            width: $size * 2;
+            height: $size * 2;
+            border-style: solid;
+            border-width: $size;
+            border-color: transparent transparent $color transparent;
+            position: absolute;
+            top: -$size * 2;
+            cursor: default;
+        }
+    }
+    @if ($position==bottom) {
+        &:after {
+            content: "";
+            display: block;
+            width: $size * 2;
+            height: $size * 2;
+            border-style: solid;
+            border-width: $size;
+            border-color: $color transparent transparent transparent;
+            position: absolute;
+            bottom: -$size * 2;
+            left: $size * 2;
+            cursor: default;
+        }
+    }
+    @if ($position==right) {
+        &:after {
+            content: "";
+            display: block;
+            width: $size * 2;
+            height: $size * 2;
+            border-style: solid;
+            border-width: $size;
+            border-color: transparent transparent transparent $color;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: -$size * 2;
+            margin: auto;
+            cursor: default;
+        }
+    }
+    @if ($position==left) {
+        &:before {
+            content: "";
+            display: block;
+            width: $size * 2;
+            height: $size * 2;
+            border-style: solid;
+            border-width: $size;
+            border-color: transparent $color transparent transparent;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: -$size * 2;
+            margin: auto;
+            cursor: default;
+        }
+    }
 }
 
 @mixin triangle-left($color) {
-	&:before {
-		content: "";
-		display: block;
-		border: 4px solid transparent;
-		border-left: 4px solid $color;
-		position: absolute;
-		top: 12px;
-		left: 14px;
-	}
+    &:before {
+        content: "";
+        display: block;
+        border: 4px solid transparent;
+        border-left: 4px solid $color;
+        position: absolute;
+        top: 12px;
+        left: 14px;
+    }
 }
 
 @mixin colorsClasses ($colors, $colorNames) {
-	$i: 1;
-	@each $color in $colors {
-		.#{nth($colorNames, $i)}-text {
-			color: $color !important;
-		}
-		.#{nth($colorNames, $i)}-bg {
-			background-color: $color !important;
-		}
-		$i: $i + 1;
-	}
+    $i: 1;
+    @each $color in $colors {
+        .#{nth($colorNames, $i)}-text {
+            color: $color !important;
+        }
+        .#{nth($colorNames, $i)}-bg {
+            background-color: $color !important;
+        }
+        $i: $i+1;
+    }
 }
 
 @mixin colorsClassesCustom ($colors, $colorNames) {
-	$i: 1;
-	@each $color in $colors {
-		.#{nth($colorNames, $i)}-text {
-			color: $color !important;
-		}
-		.#{nth($colorNames, $i)}-bg {
-			background-color: $color !important;
-		}
-		$i: $i + 1;
-	}
+    $i: 1;
+    @each $color in $colors {
+        .#{nth($colorNames, $i)}-text {
+            color: $color !important;
+        }
+        .#{nth($colorNames, $i)}-bg {
+            background-color: $color !important;
+        }
+        $i: $i+1;
+    }
 }
 
 $one: 1;
@@ -252,129 +265,125 @@ $half: 0.5;
 $one-and-half: 1.5;
 $double-and-half: 2.5;
 $no: 0;
-
-$sizes:
-	$one,
-	$double,
-	$triple,
-	$quad,
-	$half,
-	$one-and-half,
-	$double-and-half,
-	$no;
-
-$sizeMargins:
-	"one",
-	"double",
-	"triple",
-	"quad",
-	"half",
-	"one-and-half",
-	"double-and-half",
-	"no";
-
+$sizes: $one,
+$double,
+$triple,
+$quad,
+$half,
+$one-and-half,
+$double-and-half,
+$no;
+$sizeMargins: "one",
+"double",
+"triple",
+"quad",
+"half",
+"one-and-half",
+"double-and-half",
+"no";
 $base-lh: (1);
-
 @mixin margin($position) {
-	$n: 1;
-	@each $size in $sizes {
-		.u-#{($position)}-margin--#{nth($sizeMargins, $n)} {
-			margin-#{($position)}: ($base-lh*$size) + rem;
-		}
-		.u-#{($position)}-margin--#{nth($sizeMargins, $n)}-important {
-			margin-#{($position)}: ($base-lh*$size) + rem !important;
-		}
-		$n: $n + 1;
-	}
+    $n: 1;
+    @each $size in $sizes {
+        .u-#{($position)}-margin--#{nth($sizeMargins, $n)} {
+            margin-#{($position)}: ($base-lh*$size) + rem;
+        }
+        .u-#{($position)}-margin--#{nth($sizeMargins, $n)}-important {
+            margin-#{($position)}: ($base-lh*$size) + rem !important;
+        }
+        $n: $n+1;
+    }
 }
 
 @mixin padding($position) {
-	$n: 1;
-	@each $size in $sizes {
-		.u-#{($position)}-padding--#{nth($sizeMargins, $n)} {
-			padding-#{($position)}: ($base-lh*$size) + rem;
-		}
-		.u-#{($position)}-padding--#{nth($sizeMargins, $n)}-important {
-			padding-#{($position)}: ($base-lh*$size) + rem !important;
-		}
-		$n: $n + 1;
-	}
+    $n: 1;
+    @each $size in $sizes {
+        .u-#{($position)}-padding--#{nth($sizeMargins, $n)} {
+            padding-#{($position)}: ($base-lh*$size) + rem;
+        }
+        .u-#{($position)}-padding--#{nth($sizeMargins, $n)}-important {
+            padding-#{($position)}: ($base-lh*$size) + rem !important;
+        }
+        $n: $n+1;
+    }
 }
 
-$cursorProperty:
-	default,
-	crosshair,
-	help,
-	move,
-	pointer,
-	progress,
-	text,
-	wait,
-	n-resize,
-	ne-resize,
-	e-resize,
-	se-resize,
-	s-resize,
-	sw-resize,
-	w-resize,
-	nw-resize;
-
+$cursorProperty: default,
+crosshair,
+help,
+move,
+pointer,
+progress,
+text,
+wait,
+n-resize,
+ne-resize,
+e-resize,
+se-resize,
+s-resize,
+sw-resize,
+w-resize,
+nw-resize;
 @mixin cursors($cursorProperty) {
-	$i: 1;
-	@each $property in $cursorProperty {
-		.cursor-#{nth($cursorProperty, $i)} {
-			cursor: $property;
-		}
-		$i: $i + 1;
-	}
+    $i: 1;
+    @each $property in $cursorProperty {
+        .cursor-#{nth($cursorProperty, $i)} {
+            cursor: $property;
+        }
+        $i: $i+1;
+    }
 }
 
 @mixin bg-rgba($r, $g, $b, $a) {
-	#{background-color}: rgb($r, $g, $b);
-	#{background-color}: rgba($r, $g, $b, $a);
+    #{background-color}: rgb($r, $g, $b);
+    #{background-color}: rgba($r, $g, $b, $a);
 }
 
 @mixin pseudo($width, $height, $content) {
-	content: $content;
-	display: block;
-	position: absolute;
-	width: $width;
-	height: $height;
+    content: $content;
+    display: block;
+    position: absolute;
+    width: $width;
+    height: $height;
 }
 
 //$colorType: What to colorify - color (fill + stroke), fill, stroke
 @mixin svg($width, $height, $svg, $color: null, $colorType: "color") {
-	@if $color {
-		background-image: svg($svg, "[#{$colorType}]: #{$color}");
-	} @else {
-		background-image: svg($svg);
-	}
-	background-size: $width $height;
-	background-repeat: no-repeat;
-	background-position: 50%;
+    @if $color {
+        background-image: svg($svg, "[#{$colorType}]: #{$color}");
+    }
+    @else {
+        background-image: svg($svg);
+    }
+    background-size: $width $height;
+    background-repeat: no-repeat;
+    background-position: 50%;
 }
 
 @mixin pseudo-svg($width, $height, $svg, $color: null, $colorType: null) {
-	@include pseudo($width, $height, "");
-	@include svg($width, $height, $svg, $color, $colorType);
+    @include pseudo($width, $height, "");
+    @include svg($width, $height, $svg, $color, $colorType);
 }
 
 @mixin svg-color($width, $height, $svg, $color) {
-	@include svg($width, $height, $svg, $color);
+    @include svg($width, $height, $svg, $color);
 }
+
 @mixin svg-fill($width, $height, $svg, $color) {
-	@include svg($width, $height, $svg, $color, "fill");
+    @include svg($width, $height, $svg, $color, "fill");
 }
+
 @mixin svg-stroke($width, $height, $svg, $color) {
-	@include svg($width, $height, $svg, $color, "stroke");
+    @include svg($width, $height, $svg, $color, "stroke");
 }
 
 @mixin u-border-bottom {
-	border-bottom: 1px solid $athens-gray;
-	margin-top: 0;
-	padding-top: 1.25rem;
-	padding-bottom: 1.25rem;
+    border-bottom: 1px solid $athens-gray;
+    margin-top: 0;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
 }
+
 
 /*
 	V-Rythn

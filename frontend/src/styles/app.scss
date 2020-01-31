@@ -1,14 +1,15 @@
 /*
 	Vars & colors
 */
-@import "vars/**/*";
 
+@import "vars/**/*";
 @import '../../../node_modules/noty/src/noty.scss';
 @import '../../../node_modules/noty/src/themes/mint.scss';
 
 /*
 	Styles
 */
+
 @import "vendor/**/*";
 @import "base/**/*";
 @import "ui/**/*";

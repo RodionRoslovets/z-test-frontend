@@ -6,8 +6,8 @@
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.vue frontend/src",
-    "build": "NODE_ENV=development node frontend/build/build.js",
-    "watch": "NODE_ENV=development WATCH=true node frontend/build/build.js",
+    "build": "cross-env NODE_ENV=development node frontend/build/build.js",
+    "watch": "cross-env NODE_ENV=development WATCH=true node frontend/build/build.js",
     "prod": "NODE_ENV=production node frontend/build/build.js",
     "update-packages": "yarn upgrade-interactive --latest"
   },
@@ -39,6 +39,7 @@
     "babel-preset-vue": "^2.0.2",
     "chalk": "^2.4.1",
     "copy-webpack-plugin": "^4.0.1",
+    "cross-env": "^6.0.3",
     "css-loader": "^0.28.0",
     "dotenv": "^8.1.0",
     "enquire.js": "^2.1.6",

@@ -1,208 +1,186 @@
 .content {
-	//Нестилизованный список
-	ul, ol {
-		&.ul--clear,
-		&.ol--clear {
-			li {
-				// @extend %u-collapse--top;
-			}
-		}
-	}
-
-	li + li {
-		margin-top: 1rem;
-	}
-
-	ul ul, ol ol, ul ol, ol ul {
-		margin-top: 1rem;
-	}
-
-	//Стили элементов списка
-	ul:not(.ul--clear):not(.ya-share2__list),
-	ol:not(.ol--clear) {
-		li {
-			position: relative;
-			padding-left: 1.875rem;
-			line-height: 1.5;
-		}
-	}
-
-	//Маркерованный список
-	ul:not(.ul--clear):not(.ya-share2__list) {
-		li {
-			&:before {
-				background-color: $tango;
-				position: absolute;
-				content: '';
-				width: 1.25rem;
-				height: 2px;
-				display: block;
-				top: 0.65rem;
-				left: 0;
-			}
-
-		}
-
-		ol {
-			counter-reset: list;
-
-			> li {
-				&:before {
-					counter-increment: list;
-					content: counter(list) ".";
-					width: 1.25rem;
-					display: block;
-					position: absolute;
-					top: 0;
-					left: 0;
-					text-align: left;
-					font-weight: 500;
-					color: $tango;
-				}
-			}
-		}
-	}
-
-	//Список без маркеров
-	.no-markers {
-		li {
-			&:before {
-				display: none !important;
-				padding-left: 0;
-			}
-		}
-	}
-
-	//Нумерованный список
-	ol:not(.ol--clear) {
-		counter-reset: list;
-
-		> li {
-			&:before {
-				counter-increment: list;
-				content: counter(list, decimal-leading-zero);
-				width: 1.25rem;
-				display: block;
-				position: absolute;
-				top: 0;
-				left: 0;
-				text-align: left;
-				font-weight: 500;
-				color: $tango;
-			}
-		}
-	}
+    //Нестилизованный список
+    ul,
+    ol {
+        &.ul--clear,
+        &.ol--clear {
+            li {
+                // @extend %u-collapse--top;
+            }
+        }
+    }
+    li+li {
+        margin-top: 1rem;
+    }
+    ul ul,
+    ol ol,
+    ul ol,
+    ol ul {
+        margin-top: 1rem;
+    }
+    //Стили элементов списка
+    ul:not(.ul--clear):not(.ya-share2__list),
+    ol:not(.ol--clear) {
+        li {
+            position: relative;
+            padding-left: 1.875rem;
+            line-height: 1.5;
+        }
+    }
+    //Маркерованный список
+    ul:not(.ul--clear):not(.ya-share2__list) {
+        li {
+            &:before {
+                background-color: $tango;
+                position: absolute;
+                content: '';
+                width: 1.25rem;
+                height: 2px;
+                display: block;
+                top: 0.65rem;
+                left: 0;
+            }
+        }
+        ol {
+            counter-reset: list;
+            >li {
+                &:before {
+                    counter-increment: list;
+                    content: counter(list) ".";
+                    width: 1.25rem;
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    text-align: left;
+                    font-weight: 500;
+                    color: $tango;
+                }
+            }
+        }
+    }
+    //Список без маркеров
+    .no-markers {
+        li {
+            &:before {
+                display: none !important;
+                padding-left: 0;
+            }
+        }
+    }
+    //Нумерованный список
+    ol:not(.ol--clear) {
+        counter-reset: list;
+        >li {
+            &:before {
+                counter-increment: list;
+                content: counter(list, decimal-leading-zero);
+                width: 1.25rem;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                text-align: left;
+                font-weight: 500;
+                color: $tango;
+            }
+        }
+    }
 }
 
 .linked-list {
-	li + li {
-		margin-top: 0.9rem !important;
-	}
-
-	.link--linked {
-		display: inline-flex;
-
-		&:before {
-			flex-shrink: 0;
-			margin-right: 1.3rem;
-		}
-	}
-
+    li+li {
+        margin-top: 0.9rem !important;
+    }
+    .link--linked {
+        display: inline-flex;
+        &:before {
+            flex-shrink: 0;
+            margin-right: 1.3rem;
+        }
+    }
 }
 
 .file-list {
-	li + li {
-		margin-top: 0.9rem !important;
-	}
-
-	&__item {
-		position: relative;
-		display: flex;
-		align-items: flex-start;
-
-		&:before {
-			content: '';
-			display: block;
-			width: 2rem;
-			height: 2.1rem;
-			@include svg(auto, 100%, "icon_list-file");
-			margin-right: 1.8rem;
-			text-transform: uppercase;
-			color: #C6C6C6;
-			display: flex;
-			align-items: flex-end;
-			justify-content: center;
-			line-height: 1;
-			font-size: 0.5rem;
-			font-weight: 500;
-			font-family: 'FranklinGothic', Helvetica, sans-serif;
-			padding-bottom: 0.25rem;
-			flex-shrink: 0;
-			flex-grow: 0;
-		}
-
-		&--pdf:before {
-			content: 'PDF';
-		}
-
-		&--xls:before {
-			content: 'xls';
-		}
-
-		&--doc:before {
-			content: 'doc';
-		}
-
-		&--xlsx:before {
-			content: 'xlsx';
-		}
-
-		&--docx:before {
-			content: 'docx';
-		}
-
-		&--mp3:before {
-			content: 'mp3';
-		}
-
-		> a {
-			width: 100%;
-			display: inline-block;
-			flex-direction: column;
-			color: $thunder;
-			text-decoration: none;
-			font-family: 'FranklinGothic', Helvetica, sans-serif;
-			line-height: 1;
-			margin-top: 0;
-			align-items: flex-start;
-		}
-		&--no-icon:before {
-			display: none;
-		}
-	}
-
-	&__filename {
-		font-weight: 500;
-		border-bottom: 1px solid;
-		line-height: 1.4;
-		transition: border-color 0.2s ease;
-	}
-
-	&__fileinfo {
-		font-size: 0.875rem;
-		margin-top: 0.4rem;
-		display: inline-block;
-		width: 100%;
-	}
-
-	&__item > a:hover .file-list__filename {
-		border-bottom-color: transparent;
-	}
-
-	&__filedate {
-		font-size: 0.875rem;
-		color: $oslo-gray;
-		display: inline-block;
-		width: 100%;
-	}
+    li+li {
+        margin-top: 0.9rem !important;
+    }
+    &__item {
+        position: relative;
+        display: flex;
+        align-items: flex-start;
+        &:before {
+            content: '';
+            display: block;
+            width: 2rem;
+            height: 2.1rem;
+            @include svg(auto, 100%, "icon_list-file");
+            margin-right: 1.8rem;
+            text-transform: uppercase;
+            color: #C6C6C6;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            line-height: 1;
+            font-size: 0.5rem;
+            font-weight: 500;
+            font-family: 'Roboto', sans-serif;
+            padding-bottom: 0.25rem;
+            flex-shrink: 0;
+            flex-grow: 0;
+        }
+        &--pdf:before {
+            content: 'PDF';
+        }
+        &--xls:before {
+            content: 'xls';
+        }
+        &--doc:before {
+            content: 'doc';
+        }
+        &--xlsx:before {
+            content: 'xlsx';
+        }
+        &--docx:before {
+            content: 'docx';
+        }
+        &--mp3:before {
+            content: 'mp3';
+        }
+        >a {
+            width: 100%;
+            display: inline-block;
+            flex-direction: column;
+            color: $thunder;
+            text-decoration: none;
+            font-family: 'Roboto', sans-serif;
+            line-height: 1;
+            margin-top: 0;
+            align-items: flex-start;
+        }
+        &--no-icon:before {
+            display: none;
+        }
+    }
+    &__filename {
+        font-weight: 500;
+        border-bottom: 1px solid;
+        line-height: 1.4;
+        transition: border-color 0.2s ease;
+    }
+    &__fileinfo {
+        font-size: 0.875rem;
+        margin-top: 0.4rem;
+        display: inline-block;
+        width: 100%;
+    }
+    &__item>a:hover .file-list__filename {
+        border-bottom-color: transparent;
+    }
+    &__filedate {
+        font-size: 0.875rem;
+        color: $oslo-gray;
+        display: inline-block;
+        width: 100%;
+    }
 }

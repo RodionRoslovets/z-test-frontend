@@ -1,5 +1,6 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+// The Vue build version to load with the `import`
+// command
+//     (runtime - only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
 import store from './store/'
@@ -10,10 +11,10 @@ import { AppDeviceEnquire } from '@/utils/mixin'
 import { showNotyfications } from '@/utils/notifications'
 import { VueAxios } from '@/utils/request'
 
-import List from '@/components/List'
+import { Card, MoreBtn } from './components/List'
 import Scheme from '@/components/Scheme'
 
-Vue.component('list', List)
+// Vue.component('list', List)
 Vue.component('scheme', Scheme)
 
 // https://webpack.js.org/guides/dependency-management/#require-context
@@ -29,13 +30,13 @@ requireComponent.keys().forEach(fileName => {
     Vue.component(componentName, componentConfig.default || componentConfig)
 })
 
-window.onerror = function (msg, url, lineNo, columnNo, error) {
+window.onerror = function(msg, url, lineNo, columnNo, error) {
     showNotyfications(`${msg}<br>${url}#${lineNo}`, {
         type: 'error'
     })
 }
 
-Vue.config.errorHandler = function (err, vm, info) {
+Vue.config.errorHandler = function(err, vm, info) {
     let errMsg = `Error: ${err.toString()}`
     let infoMsg = ''
     let componentMsg = ''
@@ -54,7 +55,7 @@ Vue.config.errorHandler = function (err, vm, info) {
     })
 }
 
-Vue.config.warnHandler = function (msg, vm, info) {
+Vue.config.warnHandler = function(msg, vm, info) {
     let warnMsg = `Warn: ${msg.toString()}`
     let infoMsg = ''
     let componentMsg = ''
@@ -74,7 +75,7 @@ Vue.config.warnHandler = function (msg, vm, info) {
 }
 
 Object.defineProperty(Vue.prototype, '$bus', {
-    get () {
+    get() {
         return this.$root.bus
     }
 })
@@ -96,4 +97,37 @@ new Vue({
     components: {
         App
     }
-})
+});
+
+let app = document.getElementById('app');
+
+app.innerHTML = '<p>Загрузка...</p>';
+
+let count = 0;
+
+fetch('https://api.myjson.com/bins/m4a6k')
+
+.then(response => response.json())
+
+.then(response => {
+
+        response.news.forEach((news, index) => {
+
+            let card = new Card(news.date, news.title, news.tags);
+
+            index === 0 && count === 0 ? app.innerHTML = card.html.outerHTML : app.innerHTML += card.html.outerHTML;
+
+        });
+
+        let moreBtn = new MoreBtn();
+
+        app.innerHTML += moreBtn.html.outerHTML;
+
+        count++;
+
+    })
+    .catch(() => {
+
+        app.innerHTML = '<p>К сожалению, что-то пошло не так...</p>';
+
+    });

@@ -1,83 +1,67 @@
 .footer {
-	background-color: $alabaster;
-	padding: 1.8rem 0;
-	position: relative;
-
-	> .container {
-		display: flex;
-		align-items: center;
-	}
+    background-color: $alabaster;
+    padding: 1.8rem 0;
+    position: relative;
+    >.container {
+        display: flex;
+        align-items: center;
+    }
 }
 
-
 .footer__nav {
-	margin-right: auto;
-
-	&-list {
-		display: flex;
-		align-items: center;
-		margin: 0;
-	}
-
-	&-link {
-		color: $oslo-gray;
-		text-decoration: none;
-		font-weight: 500;
-	}
-
-	&-item {
-		& + & {
-			margin-left: 2.6rem;
-		}
-
-		a {
-			transition: color 0.2s linear;
-
-			&:hover {
-				color: $pomegranate;
-			}
-		}
-	}
+    margin-right: auto;
+    &-list {
+        display: flex;
+        align-items: center;
+        margin: 0;
+    }
+    &-link {
+        color: $oslo-gray;
+        text-decoration: none;
+        font-weight: 500;
+    }
+    &-item {
+        &+& {
+            margin-left: 2.6rem;
+        }
+        a {
+            transition: color 0.2s linear;
+            &:hover {
+                color: $pomegranate;
+            }
+        }
+    }
 }
 
 .footer__social {
-	font-size: 0;
-	margin-right: 3rem;
-
-
-	&-link {
-		width: 1rem;
-		height: 1rem;
-		font-size: 0;
-		display: inline-block;
-		transition: background 0.2s linear;
-
-		& + & {
-			margin-left: 1rem;
-		}
-
-		&--fb {
-			@include svg(100%, 100%, 'icon_soc-fb');
-
-			&:hover {
-				 @include svg-fill(100%, 100%, 'icon_soc-fb', $pomegranate);
-			}
-		}
-
-		&--in {
-			@include svg(100%, 100%, 'icon_soc-in');
-
-			&:hover {
-				@include svg-fill(100%, 100%, 'icon_soc-in', $pomegranate);
-			}
-		}
-
-		&--tw {
-			@include svg(100%, 100%, 'icon_soc-twitter');
-
-			&:hover {
-				@include svg-fill(100%, 100%, 'icon_soc-twitter', $pomegranate);
-			}
-		}
-	}
+    font-size: 0;
+    margin-right: 3rem;
+    &-link {
+        width: 1rem;
+        height: 1rem;
+        font-size: 0;
+        display: inline-block;
+        transition: background 0.2s linear;
+        &+& {
+            margin-left: 1rem;
+        }
+        &--fb {
+            @include svg(100%, 100%, 'icon_soc-fb');
+            &:hover {
+                @include svg-fill(100%, 100%, 'icon_soc-fb', $pomegranate);
+            }
+        }
+        &--in {
+            @include svg(100%, 100%, 'icon_soc-in');
+            &:hover {
+                @include svg-fill(100%, 100%, 'icon_soc-in', $pomegranate);
+            }
+        }
+        &--tw {
+            @include svg(100%, 100%, 'icon_soc-twitter');
+            &:hover {
+                @include svg-fill(100%, 100%, 'icon_soc-twitter', $pomegranate);
+            }
+        }
+    }
 }
