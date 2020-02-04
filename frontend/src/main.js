@@ -6,12 +6,25 @@ import App from './App'
 import store from './store/'
 
 import '@/utils/filter' // global
-import { getLang } from '@/utils/i18n'
-import { AppDeviceEnquire } from '@/utils/mixin'
-import { showNotyfications } from '@/utils/notifications'
-import { VueAxios } from '@/utils/request'
+import {
+    getLang
+} from '@/utils/i18n'
+import {
+    AppDeviceEnquire
+} from '@/utils/mixin'
+import {
+    showNotyfications
+} from '@/utils/notifications'
+import {
+    VueAxios
+} from '@/utils/request'
 
-import { Card, MoreBtn } from './components/List'
+import {
+    Card,
+    MoreBtn,
+    Search,
+    Loading
+} from './components/List'
 import Scheme from '@/components/Scheme'
 
 // Vue.component('list', List)
@@ -30,13 +43,13 @@ requireComponent.keys().forEach(fileName => {
     Vue.component(componentName, componentConfig.default || componentConfig)
 })
 
-window.onerror = function(msg, url, lineNo, columnNo, error) {
+window.onerror = function (msg, url, lineNo, columnNo, error) {
     showNotyfications(`${msg}<br>${url}#${lineNo}`, {
         type: 'error'
     })
 }
 
-Vue.config.errorHandler = function(err, vm, info) {
+Vue.config.errorHandler = function (err, vm, info) {
     let errMsg = `Error: ${err.toString()}`
     let infoMsg = ''
     let componentMsg = ''
@@ -55,7 +68,7 @@ Vue.config.errorHandler = function(err, vm, info) {
     })
 }
 
-Vue.config.warnHandler = function(msg, vm, info) {
+Vue.config.warnHandler = function (msg, vm, info) {
     let warnMsg = `Warn: ${msg.toString()}`
     let infoMsg = ''
     let componentMsg = ''
@@ -99,35 +112,93 @@ new Vue({
     }
 });
 
-let app = document.getElementById('app');
+//------------------//
 
-app.innerHTML = '<p>Загрузка...</p>';
+let app = document.getElementById('app'),
+    searchForm = new Search(),
+    loadText = new Loading('Загрузка...'),
+    newsBlock = document.querySelector('.news');
 
-let count = 0;
+app.prepend(loadText.elem)
+
+app.prepend(searchForm.form)
+
+searchForm.form.addEventListener('submit', (e)=>{
+    e.preventDefault();
+
+    searchForm.sendReq()
+        .then(response => response.json())
+        .then(response => {
+
+            newsBlock.innerHTML = ''
+
+            app.childNodes.forEach(node=>{
+                if(node.classList.contains('more-btn')){
+                    node.remove()
+                }
+            })
+
+            renderNews(response.news, app, newsBlock)
+
+        })
+})
+
+function renderNews(news, app, block, btn) {
+    news.forEach(news => {
+
+        let card = new Card(news.date, news.title, news.tags);
+
+        block.append(card.html);
+
+
+    });
+
+    btn ? app.append(btn) : null
+}
 
 fetch('https://api.myjson.com/bins/m4a6k')
 
-.then(response => response.json())
+    .then(response => response.json())
 
-.then(response => {
+    .then(response => {
 
-        response.news.forEach((news, index) => {
+        if (response.page.total) {
 
-            let card = new Card(news.date, news.title, news.tags);
+            let newsCount = 0,
+                moreBtn = new MoreBtn();
 
-            index === 0 && count === 0 ? app.innerHTML = card.html.outerHTML : app.innerHTML += card.html.outerHTML;
+            app.removeChild(loadText.elem)
 
-        });
+            renderNews(response.news, app, newsBlock, moreBtn.btn)
 
-        let moreBtn = new MoreBtn();
+            moreBtn.btn.addEventListener('click', () => {
 
-        app.innerHTML += moreBtn.html.outerHTML;
+                moreBtn.btn.remove();
 
-        count++;
+                moreBtn.sendReq('https://api.myjson.com/bins/m4a6k')
+                    .then(resp => resp.json())
+                    .then(resp => {
+
+                        newsCount < resp.page.total ? renderNews(resp.news, app, newsBlock, moreBtn.btn) : null
+
+                        newsCount++
+
+                        newsCount === resp.page.total ? moreBtn.btn.remove() : null
+
+                    })
+            })
+
+            newsCount++;
+
+        } else {
+            app.innerHTML = '<p>Данные отсутствуют</p>';
+        }
 
     })
-    .catch(() => {
+    .catch((err) => {
 
         app.innerHTML = '<p>К сожалению, что-то пошло не так...</p>';
+
+        console.log(err);
 
     });

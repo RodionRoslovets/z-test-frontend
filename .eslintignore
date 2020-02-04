@@ -1,2 +1,4 @@
 /frontend/config/
 /frontend/*.js
+/frontend/src/components/List/index.js
+/frontend/src/main.js
