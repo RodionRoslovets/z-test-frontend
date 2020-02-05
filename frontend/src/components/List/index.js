@@ -5,7 +5,9 @@ import app from '../../store/modules/app';
 // создание элемента с классом
 function createElem(elem, className) {
     let element = document.createElement(elem)
-    element.classList.add(className)
+    if(className){
+        element.classList.add(className)
+    }
     return element
 }
 
@@ -36,7 +38,7 @@ class Card {
         newsTitle.innerText = title
         newsTags.innerText = tags
 
-        this.html = card
+        this.card = card
     }
 }
 
@@ -61,8 +63,17 @@ class Search{
     constructor(){
         this.form = createElem('form', 'search-form')
         this.field = createElem('input', 'search-form__input')
+        this.label = createElem('label')
+        this.searchIcon = createElem('div', 'search-icon')
+        this.round = createElem('div', 'round')
+        this.stick = createElem('div', 'stick')
 
-        this.form.appendChild(this.field)
+        this.searchIcon.appendChild(this.round)
+        this.searchIcon.appendChild(this.stick)
+
+        this.label.appendChild(this.searchIcon)
+        this.label.appendChild(this.field)
+        this.form.appendChild(this.label)
 
         this.form.setAttribute('action', '#')
         this.form.setAttribute('method', 'GET')

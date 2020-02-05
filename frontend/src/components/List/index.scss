@@ -4,12 +4,58 @@ $button-gradient:linear-gradient(214.99deg, #3BCDFB 38.41%, #D728F4 78.33%), #C4
     display:flex;
     flex-wrap: wrap;
     justify-content:space-between;
+    @media screen and(max-width:767px) {
+        flex-direction:column
+    }
     &-card{
         height: 254px;
-        width: 412px;
+        width: 32%;
         background: #F8F8F8;
         padding:24px;
         margin-bottom: 24px;
+        @media screen and(max-width:767px) {
+            width: 100%;
+            background: #Fff;
+            border-bottom:1px solid #D9D9D6;
+            padding:25px 0 20px;
+            height: auto;
+        }
+        &.news-card__imaged{
+            width:66%;
+            padding-right: 170px;
+            background-repeat: no-repeat;
+            background-size:cover;
+            @media screen and(max-width:1240px) {
+                padding-right: 24px;
+                width:100%;
+            }
+            @media screen and(max-width:767px) {
+                display:none;
+            }
+            & .news-date{
+                margin-bottom: 100px;
+            }
+            & .news-tags{
+                display:none;
+            }
+            & .news-title{
+                color:#fff;
+                font-size:32px;
+                text-transform: uppercase;
+                line-height: 41px;
+                position: relative;
+                &:before{
+                    content:'В центре внимания';
+                    position:absolute;
+                    font-size:12px;
+                    line-height:14px;
+                    border:1px solid #fff;
+                    border-radius: 2px;
+                    top:-24px;
+                    padding:4px 4px 2px 6px;
+                }
+            }
+        }
     }
     &-date{
         font-size:12px;
@@ -20,17 +66,30 @@ $button-gradient:linear-gradient(214.99deg, #3BCDFB 38.41%, #D728F4 78.33%), #C4
         border-radius: 2px;
         width:77px;
         text-align: center;
+        @media screen and(max-width:767px) {
+            margin-bottom:5px;
+        }
     }
     &-title{
         font-size:24px;
         line-height: 28px;
         color:#000;
-        margin-bottom: 50px;
+        margin-bottom: 50px;        
+        @media screen and(max-width:1240px) {
+            font-size:22px;
+        }
+        @media screen and(max-width:1023px) {
+            margin-bottom: 20px;
+        }
+        @media screen and(max-width:767px) {
+            font-size:16px;
+        }
     }
     &-tags{
         border: 1px solid #D9D9D6;
         border-radius: 2px;
         color:#97999B;
+        font-size: 12px;
         font-weight: bold;
         padding:4px 4px 2px 6px;
         width:fit-content;
@@ -44,6 +103,9 @@ $button-gradient:linear-gradient(214.99deg, #3BCDFB 38.41%, #D728F4 78.33%), #C4
     font-weight: bold;
     padding:7px 36px;
     text-align: center;
+    @media screen and(max-width:767px) {
+        width: 100%;
+    }
 }
 
 .search-form{
@@ -51,8 +113,37 @@ $button-gradient:linear-gradient(214.99deg, #3BCDFB 38.41%, #D728F4 78.33%), #C4
     margin-bottom: 40px;
     width:412px;
     font-size: 14px;
+    padding-left: 15px;
+    @media screen and(max-width:767px) {
+        width: 100%;
+        background:#F8F8F8;
+        margin-bottom: 0px;
+    }
+    & label{
+        display:flex;
+        align-items: center;
+    }
     &__input{
-        padding:15px 15px 19px;
+        padding:15px 4px 19px;
         width:380px;
+    }
+}
+
+.search-icon{
+    width: 24px;
+    height: 19px;
+    & .round{
+        width: 13px;
+        height: 13px;
+        border: 2px solid #97999B;
+        border-radius: 50%;
+    }
+    & .stick{
+        width: 6px;
+        border: 1px solid #97999B;
+        transform: rotate(-135deg);
+        position: relative;
+        left: 9px;
+        bottom: 2px;
     }
 }

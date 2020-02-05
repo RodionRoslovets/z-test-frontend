@@ -148,7 +148,12 @@ function renderNews(news, app, block, btn) {
 
         let card = new Card(news.date, news.title, news.tags);
 
-        block.append(card.html);
+        if(!block.firstChild && news.image){
+            card.card.classList.add('news-card__imaged')
+            card.card.style.backgroundImage = 'url("./Rectangle_6.jpg")'
+        }
+
+        block.append(card.card);
 
 
     });
